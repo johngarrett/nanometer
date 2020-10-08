@@ -5,6 +5,7 @@ import CoreMotion
 class ContentViewModel: ObservableObject {
     @Published var currentSpeed: (Double, Double, Double)?
     @Published var acceleration: CMAcceleration?
+    @Published var startingMph: Int = 60
     private var previousAcceleration: CMAcceleration?
     let motionManager = CMMotionManager()
     var timer: Timer!

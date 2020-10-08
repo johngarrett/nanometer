@@ -15,7 +15,14 @@ struct ContentView: View {
                 .font(.body)
                 .fontWeight(.medium)
             Accelerometer(acceleration: $model.acceleration)
-            
+            Spacer()
+            VStack {
+                Text("Starting Speed")
+                Text(String(model.startingMph))
+                    .font(.system(size: 100, weight: .medium, design: .monospaced))
+                Stepper(value: $model.startingMph, in: 45...80, step: 5) { }
+                .frame(width: 100)
+            }
             Spacer()
             Button {
                 isRecoding = !isRecoding
