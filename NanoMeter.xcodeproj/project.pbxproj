@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		96808D12252F8ED5001BB18B /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96808D11252F8ED5001BB18B /* ContentViewModel.swift */; };
 		96EA0D1E252F8C120041CBAF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EA0D1D252F8C120041CBAF /* AppDelegate.swift */; };
 		96EA0D20252F8C120041CBAF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EA0D1F252F8C120041CBAF /* SceneDelegate.swift */; };
 		96EA0D22252F8C120041CBAF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EA0D21252F8C120041CBAF /* ContentView.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		96808D11252F8ED5001BB18B /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		96EA0D1A252F8C120041CBAF /* NanoMeter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NanoMeter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96EA0D1D252F8C120041CBAF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96EA0D1F252F8C120041CBAF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 				96EA0D1D252F8C120041CBAF /* AppDelegate.swift */,
 				96EA0D1F252F8C120041CBAF /* SceneDelegate.swift */,
 				96EA0D21252F8C120041CBAF /* ContentView.swift */,
+				96808D11252F8ED5001BB18B /* ContentViewModel.swift */,
 				96EA0D26252F8C190041CBAF /* Assets.xcassets */,
 				96EA0D2B252F8C190041CBAF /* LaunchScreen.storyboard */,
 				96EA0D2E252F8C190041CBAF /* Info.plist */,
@@ -152,6 +155,7 @@
 				96EA0D20252F8C120041CBAF /* SceneDelegate.swift in Sources */,
 				96EA0D22252F8C120041CBAF /* ContentView.swift in Sources */,
 				96EA0D25252F8C120041CBAF /* NanoMeter.xcdatamodeld in Sources */,
+				96808D12252F8ED5001BB18B /* ContentViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,6 +299,7 @@
 				DEVELOPMENT_TEAM = F65W3J85C2;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = NanoMeter/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -316,6 +321,7 @@
 				DEVELOPMENT_TEAM = F65W3J85C2;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = NanoMeter/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
