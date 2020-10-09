@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct Speedometer: View {
-    var mph = { String(format: "%.2f", $0 * 23.7) }
+    var mph = { String(format: "%.2f", $0 * 2.373) }
     @Binding var currentSpeed: (Double, Double, Double)?
     
     var body: some View {
