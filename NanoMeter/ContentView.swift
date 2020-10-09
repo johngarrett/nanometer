@@ -2,45 +2,73 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var model = ContentViewModel()
-    @State var isRecoding = false
-        
+    @State var isRecording = false
+    @State var countingDown = false
+    @State var countdownValue = 3
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
+    var satisfiesSpeedRequirement: Bool {
+        Int(model.currentSpeed ?? 0) == model.startingMph
+    }
+    
     var body: some View {
         VStack {
+            Accelerometer(acceleration: $model.acceleration)
+            
             Text("Current Speed")
                 .font(.body)
                 .fontWeight(.medium)
             Speedometer(currentSpeed: $model.currentSpeed)
-                
-            Text("Current Acceleration")
-                .font(.body)
-                .fontWeight(.medium)
-            Accelerometer(acceleration: $model.acceleration)
             Spacer()
-            VStack {
-                Text("Starting Speed")
-                Text(String(model.startingMph))
-                    .font(.system(size: 100, weight: .medium, design: .monospaced))
-                Stepper(value: $model.startingMph, in: 45...80, step: 5) { }
-                .frame(width: 100)
+            if !isRecording {
+                VStack {
+                    Text("Starting Speed")
+                        .font(.body)
+                        .fontWeight(.medium)
+                    Text(String(model.startingMph))
+                        .font(.system(size: 100, weight: .medium, design: .monospaced))
+                    Stepper(value: $model.startingMph, in: 45...80, step: 1) { }
+                    .frame(width: 100)
+                }.padding()
+                Spacer()
             }
-            Spacer()
             Button {
-                isRecoding = !isRecoding
+                isRecording = !isRecording
             } label: {
                 HStack(spacing: 8) {
-                    Image(systemName: isRecoding ? "stop.circle": "play.circle")
-                    Text(isRecoding ? "Stop Recording" : "Start Recording")
+                    Image(systemName: isRecording ? "stop.circle": "play.circle")
+                    Text(isRecording ? "Stop Recording" : "Start Recording")
                 }.padding()
             }
+            .padding(.horizontal, 8)
             .foregroundColor(.white)
-            .background(Color.red)
+            .background(
+                Color.red
+                    .opacity(satisfiesSpeedRequirement ? 1.0 : 0.2)
+            )
+            .disabled(!satisfiesSpeedRequirement)
             .cornerRadius(16)
         }
-        .background(
-            isRecoding
-                ? Color.red.opacity(0.2).edgesIgnoringSafeArea(.all)
-                : Color.white.edgesIgnoringSafeArea(.all)
+        .background((satisfiesSpeedRequirement ? Color.green.opacity(0.2) : Color.white).edgesIgnoringSafeArea(.all))
+        .overlay(
+            VStack {
+                if isRecording {
+                    let text = countdownValue != 0 ? String(countdownValue) : "RECORDING NOW"
+                    Text(text)
+                        .fontWeight(.heavy)
+                        .font(.largeTitle)
+                }
+            }
         )
+        .onReceive(timer) { _ in
+            guard isRecording else { return }
+            if countdownValue > 0 {
+                countdownValue -= 1
+            } else {
+                timer.upstream.connect().cancel()
+                model.beginRecording()
+            }
+        }
     }
 }
 

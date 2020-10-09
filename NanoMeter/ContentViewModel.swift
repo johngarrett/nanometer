@@ -4,7 +4,7 @@ import CoreMotion
 import CoreLocation
 
 class ContentViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
-    @Published var currentSpeed: (Double, Double, Double)?
+    @Published var currentSpeed: Double?
     @Published var acceleration: CMAcceleration?
     @Published var startingMph: Int = 60
     
@@ -24,11 +24,20 @@ class ContentViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         motionManager.accelerometerUpdateInterval = 1/60
         motionManager.startAccelerometerUpdates()
 
-        timer = Timer.scheduledTimer(timeInterval: 1/10, target: self, selector: #selector(ContentViewModel.update), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1/10, target: self, selector: #selector(ContentViewModel.updateAcceleration), userInfo: nil, repeats: true)
     }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
-            currentSpeed = (location.speed, 0, 0)
+            currentSpeed = location.speed * 2.373 // convert to mph
+        }
+    }
+    
+    func beginRecording() {
+        print("starting recording")
+        var dataPoints = [Date: Double]()
+        while currentSpeed! > 0 {
+            dataPoints[Date()] = currentSpeed
+            print(dataPoints)
         }
     }
     
@@ -43,23 +52,12 @@ class ContentViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
 //        }
     }
     
-    @objc func update() {
+    @objc func updateAcceleration() {
         if let accelerometerData = motionManager.accelerometerData {
             previousAcceleration = acceleration
             acceleration = accelerometerData.acceleration
-//            updateSpeed()
         } else {
-          //  print("no acceleration data")
+//            print("no acceleration data")
         }
-    }
-    
-    private func updateSpeed() {
-        guard let acceleration = acceleration, let prevAcceleration = previousAcceleration else {
-            return
-        }
-        let x = (acceleration.x - prevAcceleration.x) / (1/10) / 0.98
-        let y = (acceleration.y - prevAcceleration.y) / (1/10) / 0.98
-        let z = (acceleration.z - prevAcceleration.z) / (1/10) / 0.98
-        currentSpeed = (x, y, z)
     }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		964F083E2530C1B800279240 /* IdleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964F083D2530C1B800279240 /* IdleView.swift */; };
 		96808D12252F8ED5001BB18B /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96808D11252F8ED5001BB18B /* ContentViewModel.swift */; };
 		96808D16252FA3CF001BB18B /* Speedometer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96808D15252FA3CF001BB18B /* Speedometer.swift */; };
 		96808D19252FA3D7001BB18B /* Accelerometer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96808D18252FA3D7001BB18B /* Accelerometer.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		964F083D2530C1B800279240 /* IdleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IdleView.swift; path = NanoMeter/IdleView.swift; sourceTree = "<group>"; };
 		96808D11252F8ED5001BB18B /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		96808D15252FA3CF001BB18B /* Speedometer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speedometer.swift; sourceTree = "<group>"; };
 		96808D18252FA3D7001BB18B /* Accelerometer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accelerometer.swift; sourceTree = "<group>"; };
@@ -48,6 +50,7 @@
 		96EA0D11252F8C120041CBAF = {
 			isa = PBXGroup;
 			children = (
+				964F083D2530C1B800279240 /* IdleView.swift */,
 				96EA0D1C252F8C120041CBAF /* NanoMeter */,
 				96EA0D1B252F8C120041CBAF /* Products */,
 			);
@@ -159,6 +162,7 @@
 			files = (
 				96EA0D1E252F8C120041CBAF /* AppDelegate.swift in Sources */,
 				96EA0D20252F8C120041CBAF /* SceneDelegate.swift in Sources */,
+				964F083E2530C1B800279240 /* IdleView.swift in Sources */,
 				96EA0D22252F8C120041CBAF /* ContentView.swift in Sources */,
 				96808D16252FA3CF001BB18B /* Speedometer.swift in Sources */,
 				96808D19252FA3D7001BB18B /* Accelerometer.swift in Sources */,
